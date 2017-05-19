@@ -52,8 +52,13 @@ def msgBR(idmsg, string):
             "hexadecimal":"\nO texto é hexadecimal",
             "cesar":"\nCifra de César [%s]"%string,
             "vigenere":"\nCifra de Vigenère [%s]"%string,
-            "help":"""Ola mundo
-            que se foda"""
+            "help":""""help":"""Uso: whatcripto [escrita cifrada]
+\rParâmetro de uso:
+\r-k, --key:
+\r\tInforme para quando houver uma chave para a cifra
+\rExemplo de uso:
+\rroot@uname[~]# whatacripto 'Tqxxa Tmowqd'
+\r\t[12]-> Hello Hacker"""
             }
     print(brDict[idmsg])
 
