@@ -1,12 +1,20 @@
 # WhatCripto
 #### Desenvolvedor: VandalVNL
 #### Linguagem Utilizada: Python3
-#### Versão Atual: 1.0.0
+#### Versão Atual: 2.0.0
 #### Licença: GPL
 #### Ambiente de testes: Arch Linux, Manjaro, CentOS e Debian
 ---
 ### Chamada da ferramenta
 > uname@kurupira[~]: whatcripto (texto criptografado) (chave, quando existir)
+
+***Cifras que caracteres especiais devem ser colocadas entre aspas duplas, afim
+de evitar erros na identificação/decifragem***
+
+### Atualização
+WhatCripto foi reescrito, utilizando o paradigma orientado a objetos, facilitando
+a varredura desnecessária de cifras que não podem ser de um tipo, logo, aumentando
+o desempenho e garantindo maior confiabilidade na resposta.
 
 ---
 ### Descrição da Ferramenta
@@ -20,9 +28,10 @@ Exemplo de uso:
 root@uname[~]# whatacripto 'Tqxxa Tmowqd'
 [12]-> Hello Hacker
 
+
 ### Dependências
 - Python3
-- Libs do Python: 
+- Libs do Python:
 	- Math
 	- Sys
 	- String
@@ -30,4 +39,4 @@ root@uname[~]# whatacripto 'Tqxxa Tmowqd'
 	- Re(Regex)
 	- Base64
 	- Random
-	- Itertools	
+	- Itertools

@@ -26,10 +26,24 @@ Agradecimentos: Equipe KurupiraOS
 Versão 2.0.0
 """);
 
+def ajuda_cara(script):
+    print("""\rParâmetro de uso:
+    \r-k, --key:
+    \r\tInforme para quando houver uma chave para a cifra
+    \rExemplo de uso:
+    \rroot@uname[~]# """ + script + """ 'Tqxxa Tmowqd'
+    \r\t[12]-> Hello Hacker
+    """)
+
 # Início do escopo do main
 banner()
-script = sys.argv[0]
+script = sys.argv[0].replace("./","")
 args_given = sys.argv[1:]
+
+if '-h' in args_given or '--help' in args_given:
+    ajuda_cara(script)
+    exit()
+
 key = ""
 
 if len(args_given) == 0:
