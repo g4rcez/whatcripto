@@ -32,11 +32,6 @@ root@uname[~]# whatacripto 'Tqxxa Tmowqd'
 ### Dependências
 - Python3
 - Libs do Python:
-	- Math
 	- Sys
-	- String
-	- Locale
-	- Re(Regex)
 	- Base64
-	- Random
 	- Itertools

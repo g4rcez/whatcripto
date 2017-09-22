@@ -19,5 +19,4 @@ class sanitize:
         except:
             pass
         if text != None or text != '' or text != '\t' or text != []:
-            # print(text)
             return text

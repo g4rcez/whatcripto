@@ -1,18 +1,13 @@
 #!/usr/bin/python3
 # coding: utf-8
-# Release the imports of this Script
 import sys
-import filters.stdin
-import filters.sanitize
-import filters.text_identifier
-import ciphers.cipher_identifier
 from filters.stdin import stdin
 from filters.sanitize import sanitize
 from ciphers.base_numeric import base_numeric
 from filters.text_identifier import text_identifier
 from ciphers.cipher_identifier import cipher_identifier
 
-# Início do escopo de métodos do main
+
 def banner():
     print()
     print("""██╗    ██╗██╗  ██╗ █████╗ ████████╗ ██████╗██████╗ ██╗██████╗ ████████╗ ██████╗
@@ -24,7 +19,8 @@ def banner():
 Desenvolvedor: @vandalvnl - github.com/vandalvnl
 Agradecimentos: Equipe KurupiraOS
 Versão 2.0.0
-""");
+""")
+
 
 def ajuda_cara(script):
     print("""\rParâmetro de uso:
@@ -35,9 +31,9 @@ def ajuda_cara(script):
     \r\t[12]-> Hello Hacker
     """)
 
-# Início do escopo do main
+
 banner()
-script = sys.argv[0].replace("./","")
+script = sys.argv[0].replace("./", "")
 args_given = sys.argv[1:]
 
 if '-h' in args_given or '--help' in args_given:
@@ -47,10 +43,10 @@ if '-h' in args_given or '--help' in args_given:
 key = ""
 
 if len(args_given) == 0:
-    exit();
+    exit()
 
-if stdin.get_opt(args_given, ['-k','--key']):
-    key = stdin.get_opt_value(args_given, ['-k','--key'])
+if stdin.get_opt(args_given, ['-k', '--key']):
+    key = stdin.get_opt_value(args_given, ['-k', '--key'])
     if key in args_given:
         args_given.remove(key)
     try:
@@ -63,63 +59,57 @@ args_given = ' '.join(args_given).strip()
 identifier = cipher_identifier(args_given)
 print("Análise da Cifra: " + sanitize.print_nonone(args_given))
 if key != '' or key != None:
-    print("Foi informada uma chave: " + sanitize.print_nonone(key)+'\n')
+    print("Foi informada uma chave: " + sanitize.print_nonone(key) + '\n')
 
-# Início de identificação de cifras
 if text_identifier.is_numeric(args_given):
-    # Caso seja binário
     if identifier.cipher_bin():
         from ciphers.binaries import binaries
+
         text = binaries(args_given)
         pure_text = binaries.decipher(text)
-        # Podendo existir mais de um binário, temos um for para mostrar estes
         if len(pure_text) > 1:
             for add in pure_text:
                 pure_text_total.append(add)
         else:
             pure_text_total.append(pure_text)
     else:
-        # Caso seja octal
         if identifier.cipher_octal():
             text = base_numeric(args_given, 8, 3)
             pure_text_total.append(base_numeric.decipher(text))
 else:
-    # Caso seja uma cifra de vigenere com a 'key' existente
     if identifier.cipher_vigenere(key):
         from ciphers.vigenere import vigenere
-        text = vigenere(args_given,key)
+
+        text = vigenere(args_given, key)
         pure_text_total.append(vigenere.decipher(text))
     else:
-        # Caso seja uma cifra hexadecimal
         if identifier.cipher_hexa():
-            text = base_numeric(args_given,16)
+            text = base_numeric(args_given, 16)
             pure_text_total.append(base_numeric.decipher(text))
-            # hexadecimal possui AB que compõe uma cifra Baconica
             if identifier.cipher_baconian():
                 from ciphers.baconian import baconian
+
                 text = baconian(args_given.upper())
                 pure_text_total.append(baconian.decipher(text))
         else:
-            # Um encoding base64
             if identifier.cipher_base64:
                 from ciphers.base_64 import base_64
+
                 text = base_64(args_given)
                 pure_text_total.append(base_64.decipher(text))
-            # Uma cifra de cesar, bruteforce
             if identifier.cipher_caesar():
                 from ciphers.caesar import caesar
+
                 text = caesar(args_given)
                 for correct in caesar.decipher(text):
                     pure_text_total.append(correct)
-            # Um código morse
             if identifier.cipher_morse():
                 from ciphers.morse import morse
+
                 text = morse(args_given)
                 pure_text_total.append(morse.decipher(text))
-
-# Exibição dos resultados completos
 count = 1
-if pure_text_total != []:
+if len(pure_text_total) > 0 and not pure_text_total is []:
     for pure in pure_text_total:
         print("[" + str(count) + "]-> " + sanitize.print_nonone(pure))
         count += 1

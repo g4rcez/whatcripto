@@ -1,12 +1,10 @@
-import string
-import filters
-from filters.sanitize import sanitize
+import filters.sanitize
 from filters.text_identifier import text_identifier
+
 
 class binaries:
     def __init__(self, cipher):
         self.cipher = cipher
-
 
     def decipher(self):
         if text_identifier.has_blank(self.cipher):
@@ -14,8 +12,8 @@ class binaries:
             return self.convert_bins(cipher)
         else:
             text = []
-            for limit in range(2,8):
-                cipher = sanitize.set_spaces(self.cipher,limit).split()
+            for limit in range(2, 8):
+                cipher = filters.sanitize.sanitize.set_spaces(self.cipher, limit).split()
                 tmp = self.convert_bins(cipher)
                 if tmp != '':
                     text.append(self.convert_bins(cipher))
@@ -28,6 +26,6 @@ class binaries:
                 return False
             number = int(translate, 2)
             decimal = chr(int(translate, 2))
-            if int(number) > 31 and int(number) < 127:
+            if 31 < int(number) < 127:
                 decipher.append(decimal)
         return ''.join(decipher)

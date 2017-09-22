@@ -1,8 +1,5 @@
 import base64
-import string
-import filters
-from filters.sanitize import sanitize
-from filters.text_identifier import text_identifier
+
 
 class base_64:
     def __init__(self, cipher):

@@ -1,19 +1,18 @@
-import string
-import filters
 from filters.sanitize import sanitize
+
 
 class text_identifier:
     def is_binary(text):
         for correct in text:
-            if correct not in ("0","1"):
+            if correct not in ("0", "1"):
                 return False;
         return True;
 
     def is_hexa(text):
         for correct in text.upper():
             dict_accepted = [
-                '1','2','3','4','5','6','7','8',
-                '9','0',"A","B","C","D","E","F"
+                '1', '2', '3', '4', '5', '6', '7', '8',
+                '9', '0', "A", "B", "C", "D", "E", "F"
             ];
             if correct not in dict_accepted:
                 return False;

@@ -1,7 +1,6 @@
-import string
-import filters
-from filters.sanitize import sanitize
+import filters.sanitize
 from filters.text_identifier import text_identifier
+
 
 class base_numeric:
     def __init__(self, cipher, limit, spaces=3):
@@ -9,16 +8,13 @@ class base_numeric:
         self.limit = limit
         self.spaces = spaces
 
-
     def decipher(self):
         if text_identifier.has_blank(self.cipher):
             cipher = self.cipher.split()
             return self.convert_base(cipher)
         else:
-            text = []
-            cipher = sanitize.set_spaces(self.cipher,self.spaces).split()
+            cipher = filters.sanitize.sanitize.set_spaces(self.cipher, self.spaces).split()
             return self.convert_base(cipher)
-
 
     def convert_base(self, cipher):
         decipher = []
@@ -27,6 +23,6 @@ class base_numeric:
                 return False
             number = int(translate, self.limit)
             decimal = chr(int(translate, self.limit))
-            if int(number) > 31 and int(number) < 127:
+            if 31 < int(number) < 127:
                 decipher.append(decimal)
         return ''.join(decipher)
