@@ -3,9 +3,9 @@
 import sys
 from filters.stdin import stdin
 from filters.sanitize import sanitize
-from ciphers.base_numeric import base_numeric
+from ciphers.NumericBase import NumericBase
 from filters.text_identifier import text_identifier
-from ciphers.cipher_identifier import cipher_identifier
+from ciphers.Identifier import Identifier
 
 
 def banner():
@@ -22,7 +22,7 @@ Versão 2.0.0
 """)
 
 
-def ajuda_cara(script):
+def help_user(script):
     print("""\rParâmetro de uso:
     \r-k, --key:
     \r\tInforme para quando houver uma chave para a cifra
@@ -37,14 +37,14 @@ script = sys.argv[0].replace("./", "")
 args_given = sys.argv[1:]
 
 if '-h' in args_given or '--help' in args_given:
-    ajuda_cara(script)
+    help_user(script)
+    exit()
+
+if len(args_given) == 0:
+    help_user(script)
     exit()
 
 key = ""
-
-if len(args_given) == 0:
-    exit()
-
 if stdin.get_opt(args_given, ['-k', '--key']):
     key = stdin.get_opt_value(args_given, ['-k', '--key'])
     if key in args_given:
@@ -56,17 +56,16 @@ if stdin.get_opt(args_given, ['-k', '--key']):
 
 pure_text_total = []
 args_given = ' '.join(args_given).strip()
-identifier = cipher_identifier(args_given)
+identifier = Identifier(args_given)
 print("Análise da Cifra: " + sanitize.print_nonone(args_given))
 if key != '' or key != None:
     print("Foi informada uma chave: " + sanitize.print_nonone(key) + '\n')
 
 if text_identifier.is_numeric(args_given):
     if identifier.cipher_bin():
-        from ciphers.binaries import binaries
-
-        text = binaries(args_given)
-        pure_text = binaries.decipher(text)
+        from ciphers.Binaries import Binaries
+        text = Binaries(args_given)
+        pure_text = Binaries.decipher(text)
         if len(pure_text) > 1:
             for add in pure_text:
                 pure_text_total.append(add)
@@ -74,42 +73,37 @@ if text_identifier.is_numeric(args_given):
             pure_text_total.append(pure_text)
     else:
         if identifier.cipher_octal():
-            text = base_numeric(args_given, 8, 3)
-            pure_text_total.append(base_numeric.decipher(text))
+            text = NumericBase(args_given, 8, 3)
+            pure_text_total.append(NumericBase.decipher(text))
 else:
     if identifier.cipher_vigenere(key):
-        from ciphers.vigenere import vigenere
-
-        text = vigenere(args_given, key)
-        pure_text_total.append(vigenere.decipher(text))
+        from ciphers.Vigenere import Vigenere
+        text = Vigenere(args_given, key)
+        pure_text_total.append(Vigenere.decipher(text))
     else:
         if identifier.cipher_hexa():
-            text = base_numeric(args_given, 16)
-            pure_text_total.append(base_numeric.decipher(text))
+            text = NumericBase(args_given, 16)
+            pure_text_total.append(NumericBase.decipher(text))
             if identifier.cipher_baconian():
-                from ciphers.baconian import baconian
-
-                text = baconian(args_given.upper())
-                pure_text_total.append(baconian.decipher(text))
+                from ciphers.Baconian import Baconian
+                text = Baconian(args_given.upper())
+                pure_text_total.append(Baconian.decipher(text))
         else:
-            if identifier.cipher_base64:
-                from ciphers.base_64 import base_64
-
-                text = base_64(args_given)
-                pure_text_total.append(base_64.decipher(text))
+            if identifier.cipher_base64():
+                from ciphers.Base64 import Base64
+                text = Base64(args_given)
+                pure_text_total.append(Base64.decipher(text))
             if identifier.cipher_caesar():
-                from ciphers.caesar import caesar
-
-                text = caesar(args_given)
-                for correct in caesar.decipher(text):
+                from ciphers.Caesar import Caesar
+                text = Caesar(args_given)
+                for correct in Caesar.decipher(text):
                     pure_text_total.append(correct)
             if identifier.cipher_morse():
-                from ciphers.morse import morse
-
-                text = morse(args_given)
-                pure_text_total.append(morse.decipher(text))
+                from ciphers.Morse import Morse
+                text = Morse(args_given)
+                pure_text_total.append(Morse.decipher(text))
 count = 1
 if len(pure_text_total) > 0 and not pure_text_total is []:
     for pure in pure_text_total:
-        print("[" + str(count) + "]-> " + sanitize.print_nonone(pure))
+        print("[" + str(count).zfill(int(len([pure_text_total])/10)+2) + "]-> " + sanitize.print_nonone(pure))
         count += 1

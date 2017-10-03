@@ -1,4 +1,4 @@
-class morse:
+class Morse:
     def __init__(self, cipher):
         self.cipher = cipher
         self.inverseMorseAlphabet = ''

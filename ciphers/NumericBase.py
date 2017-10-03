@@ -2,7 +2,7 @@ import filters.sanitize
 from filters.text_identifier import text_identifier
 
 
-class base_numeric:
+class NumericBase:
     def __init__(self, cipher, limit, spaces=3):
         self.cipher = cipher
         self.limit = limit

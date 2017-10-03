@@ -1,7 +1,7 @@
 import filters.sanitize
 
 
-class baconian:
+class Baconian:
     def __init__(self, cipher):
         self.cipher = cipher
         self.dict_bacon = {

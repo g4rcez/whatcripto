@@ -1,7 +1,7 @@
 from itertools import starmap, cycle
 
 
-class vigenere:
+class Vigenere:
     def __init__(self, cipher, key):
         self.original = cipher
         self.cipher = cipher.replace(' ', '')

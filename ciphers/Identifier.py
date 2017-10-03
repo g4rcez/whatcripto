@@ -2,7 +2,7 @@ import filters.text_identifier
 from filters.sanitize import sanitize
 
 
-class cipher_identifier:
+class Identifier:
     def __init__(self, cipher):
         self.cipher = cipher
 
@@ -35,6 +35,8 @@ class cipher_identifier:
             'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '1', '2', '3', '4',
             '5', '6', '7', '8', '9', '0', '/', '+', '='
         ]
+        if ' ' in self.cipher:
+            return False
         if len(self.cipher) % 4 == 0 and len(self.cipher) >= 4:
             for correct in self.cipher:
                 if correct not in dict_accepted:

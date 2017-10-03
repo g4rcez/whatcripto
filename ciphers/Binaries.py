@@ -2,7 +2,7 @@ import filters.sanitize
 from filters.text_identifier import text_identifier
 
 
-class binaries:
+class Binaries:
     def __init__(self, cipher):
         self.cipher = cipher
 

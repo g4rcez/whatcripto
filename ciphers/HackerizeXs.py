@@ -1,0 +1,2 @@
+class HackerizeXs:
+    pass

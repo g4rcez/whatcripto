@@ -6,7 +6,7 @@
 #### Ambiente de testes: Arch Linux, Manjaro, CentOS e Debian
 ---
 ### Chamada da ferramenta
-> uname@kurupira[~]: whatcripto (texto criptografado) (chave, quando existir)
+> uname@kurupira[~]: whatcripto <texto criptografado> [chave, quando existir]
 
 ***Cifras que caracteres especiais devem ser colocadas entre aspas duplas, afim
 de evitar erros na identificação/decifragem***
@@ -15,6 +15,9 @@ de evitar erros na identificação/decifragem***
 WhatCripto foi reescrito, utilizando o paradigma orientado a objetos, facilitando
 a varredura desnecessária de cifras que não podem ser de um tipo, logo, aumentando
 o desempenho e garantindo maior confiabilidade na resposta.
+
+Novas cifras serão implementadas ao longo do tempo. Se você conhece alguma cifra
+que acha que deva ser implementada, por favor poste um Issue neste [link](https://github.com/vandalvnl/whatcripto/issues)
 
 ---
 ### Descrição da Ferramenta
