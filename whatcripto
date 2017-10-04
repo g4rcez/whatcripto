@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 # coding: utf-8
+
 import sys
 from filters.stdin import stdin
 from filters.sanitize import sanitize
+from ciphers.Identifier import Identifier
 from ciphers.NumericBase import NumericBase
 from filters.text_identifier import text_identifier
-from ciphers.Identifier import Identifier
 
 
 def banner():
@@ -18,7 +19,7 @@ def banner():
  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝    ╚═════╝
 Desenvolvedor: @vandalvnl - github.com/vandalvnl
 Agradecimentos: Equipe KurupiraOS
-Versão 2.0.0
+Versão 2.0.1
 """)
 
 
@@ -102,6 +103,10 @@ else:
                 from ciphers.Morse import Morse
                 text = Morse(args_given)
                 pure_text_total.append(Morse.decipher(text))
+            if identifier.cipher_hackerize():
+                from ciphers.HackerizeXs import HackerizeXs
+                text = HackerizeXs(args_given)
+                pure_text_total.append(HackerizeXs.decipher(text))
 count = 1
 if len(pure_text_total) > 0 and not pure_text_total is []:
     for pure in pure_text_total:

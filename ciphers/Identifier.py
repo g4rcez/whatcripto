@@ -54,3 +54,14 @@ class Identifier:
         if '.' in self.cipher and '-' in self.cipher:
             return True
         return False
+
+    def cipher_hackerize(self):
+        simbols = [ "₪", "¶", "☰", "┏", "⊥", "¥", "ü", 
+            "¡", "☐", "þ", "Λ", "§", "Ð", "∲", "ç", "ƴ", "ß", 
+            "∏", "ღ", "╫", "¿", "├", "↑", "ᶾ", "✕", "↻"
+        ]
+
+        for char in self.cipher:
+            if char in self.cipher:
+                return True
+        return False
