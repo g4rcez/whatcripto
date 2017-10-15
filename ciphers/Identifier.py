@@ -55,8 +55,7 @@ class Identifier:
             "¡", "☐", "þ", "Λ", "§", "Ð", "∲", "ç", "ƴ", "ß",
             "∏", "ღ", "╫", "¿", "├", "↑", "ᶾ", "✕", "↻"
         ]
-
-        for char in self.cipher:
+        for char in simbols:
             if char in self.cipher:
                 return True
         return False

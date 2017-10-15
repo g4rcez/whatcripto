@@ -93,16 +93,20 @@ else:
             if identifier.cipher_base64():
                 from ciphers.Base64 import Base64
                 text = Base64(args_given)
-                pure_text_total.append(Base64.decipher(text))
+                base64 = Base64.decipher(text)
+                pure_text_total.append(str(base64)[2:-3])
             if identifier.cipher_caesar():
-                from ciphers.Caesar import Caesar
-                text = Caesar(args_given)
-                for correct in Caesar.decipher(text):
-                    pure_text_total.append(correct)
-                from ciphers.RailFence import RailFence
-                text = RailFence(args_given)
-                for correct in RailFence.decipher(text):
-                    pure_text_total.append(correct)
+                choice = input("Cesar e RailFence geram muitas saídas, deseja realizar? [S/n] ")
+                print()
+                if choice is "S" or choice is "s":
+                    from ciphers.Caesar import Caesar
+                    from ciphers.RailFence import RailFence
+                    text = Caesar(args_given)
+                    for correct in Caesar.decipher(text):
+                        pure_text_total.append(correct)
+                    text = RailFence(args_given)
+                    for correct in RailFence.decipher(text):
+                        pure_text_total.append(correct)
             if identifier.cipher_morse():
                 from ciphers.Morse import Morse
                 text = Morse(args_given)
@@ -111,10 +115,8 @@ else:
                 from ciphers.HackerizeXs import HackerizeXs
                 text = HackerizeXs(args_given)
                 pure_text_total.append(HackerizeXs.decipher(text))
-count = 1
 if len(pure_text_total) > 0 and not pure_text_total is []:
     pure_text_total = list(set(pure_text_total))
     for pure in pure_text_total:
-        print("\r[" + str(count).zfill(int(len([pure_text_total])/10)+2) + "]-> " + sanitize.print_nonone(pure),end="")
-        input("")
-        count+=1
+        print("\r[+] => " + sanitize.print_nonone(str(pure)),end="")
+print()

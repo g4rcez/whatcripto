@@ -7,9 +7,6 @@ class Base64:
 
     def decipher(self):
         try:
-            encode = str(
-                base64.standard_b64decode(str.encode(self.cipher))
-            )
-            return encode[2:-3]
+            return base64.standard_b64decode(str.encode(self.cipher))
         except:
             return ''
