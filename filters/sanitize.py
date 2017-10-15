@@ -20,3 +20,12 @@ class sanitize:
             pass
         if text != None or text != '' or text != '\t' or text != []:
             return text
+
+    def removesimbols(string):
+        simbols = sanitize.charespecial()
+        for simbol in simbols:
+            string = string.replace(simbol, '')
+        return string
+
+    def charespecial():
+        return ["{","}","-","=",'ç',"[","]","_"]

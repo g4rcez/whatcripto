@@ -15,12 +15,7 @@ class Identifier:
         return filters.text_identifier.text_identifier.is_hexa(string)
 
     def cipher_caesar(self):
-        return filters.text_identifier.text_identifier.is_only_alfabetic(self.cipher);
-
-    def cipher_vigenere(self, key):
-        if filters.text_identifier.text_identifier.is_only_alfabetic(key) and " " not in key:
-            return filters.text_identifier.text_identifier.is_only_alfabetic(self.cipher)
-        return False
+        return sanitize.removesimbols(self.cipher).isalpha
 
     def cipher_baconian(self):
         self.cipher = self.cipher.replace("a", "A").replace("b", "B")
@@ -56,8 +51,8 @@ class Identifier:
         return False
 
     def cipher_hackerize(self):
-        simbols = [ "₪", "¶", "☰", "┏", "⊥", "¥", "ü", 
-            "¡", "☐", "þ", "Λ", "§", "Ð", "∲", "ç", "ƴ", "ß", 
+        simbols = [ "₪", "¶", "☰", "┏", "⊥", "¥", "ü",
+            "¡", "☐", "þ", "Λ", "§", "Ð", "∲", "ç", "ƴ", "ß",
             "∏", "ღ", "╫", "¿", "├", "↑", "ᶾ", "✕", "↻"
         ]
 

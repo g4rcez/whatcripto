@@ -59,7 +59,7 @@ pure_text_total = []
 args_given = ' '.join(args_given).strip()
 identifier = Identifier(args_given)
 print("Análise da Cifra: " + sanitize.print_nonone(args_given))
-if key != '' or key != None:
+if len(key) > 0:
     print("Foi informada uma chave: " + sanitize.print_nonone(key) + '\n')
 
 if text_identifier.is_numeric(args_given):
@@ -77,7 +77,7 @@ if text_identifier.is_numeric(args_given):
             text = NumericBase(args_given, 8, 3)
             pure_text_total.append(NumericBase.decipher(text))
 else:
-    if identifier.cipher_vigenere(key):
+    if len(key) > 0:
         from ciphers.Vigenere import Vigenere
         text = Vigenere(args_given, key)
         pure_text_total.append(Vigenere.decipher(text))
@@ -99,6 +99,10 @@ else:
                 text = Caesar(args_given)
                 for correct in Caesar.decipher(text):
                     pure_text_total.append(correct)
+                from ciphers.RailFence import RailFence
+                text = RailFence(args_given)
+                for correct in RailFence.decipher(text):
+                    pure_text_total.append(correct)
             if identifier.cipher_morse():
                 from ciphers.Morse import Morse
                 text = Morse(args_given)
@@ -109,6 +113,8 @@ else:
                 pure_text_total.append(HackerizeXs.decipher(text))
 count = 1
 if len(pure_text_total) > 0 and not pure_text_total is []:
+    pure_text_total = list(set(pure_text_total))
     for pure in pure_text_total:
-        print("[" + str(count).zfill(int(len([pure_text_total])/10)+2) + "]-> " + sanitize.print_nonone(pure))
-        count += 1
+        print("\r[" + str(count).zfill(int(len([pure_text_total])/10)+2) + "]-> " + sanitize.print_nonone(pure),end="")
+        input("")
+        count+=1
