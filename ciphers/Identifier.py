@@ -15,7 +15,7 @@ class Identifier:
         return filters.text_identifier.text_identifier.is_hexa(string)
 
     def cipher_caesar(self):
-        return sanitize.removesimbols(self.cipher).isalpha
+        return sanitize.removesimbols(self.cipher).isalpha()
 
     def cipher_baconian(self):
         self.cipher = self.cipher.replace("a", "A").replace("b", "B")
@@ -40,10 +40,12 @@ class Identifier:
         return False
 
     def cipher_octal(self):
-        for correct in self.cipher:
-            if correct not in ['0', '1', '2', '3', '4', '5', '6', '7']:
+        octal = ['0', '1', '2', '3', '4', '5', '6', '7']
+        cifra = list(self.cipher.replace(' ',''))
+        for correct in cifra:
+            if correct not in octal:
                 return False
-            return True
+        return True
 
     def cipher_morse(self):
         if '.' in self.cipher and '-' in self.cipher:
