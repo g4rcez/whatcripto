@@ -32,11 +32,20 @@ def help_user(script):
     \r\t[12]-> Hello Hacker
     """)
 
-def hexbase(cipher):
+def hexbase(cipher, base, spaces):
     from ciphers.NumericBase import NumericBase
-    text = NumericBase(cipher, 16)
+    text = NumericBase(cipher, base, spaces)
     pure_text_total.append(NumericBase.decipher(text))
 
+def add_zeros(string, limit):
+    string = string.split(' ')
+    new = []
+    for group in string:
+        if len(group) < limit:
+           new.append(group.zfill(limit))
+        else:
+            new.append(group)
+    return ''.join(new)
 
 banner()
 script = sys.argv[0].replace("./", "")
@@ -75,12 +84,11 @@ if text_identifier.is_numeric(args_given):
         pure_text_total.append(pure_text)
     else:
         if identifier.cipher_octal():
-            print(args_given)
-            input()
-            text = NumericBase(args_given, 8, 3)
-            pure_text_total.append(NumericBase.decipher(text))
+            hexbase(args_given, 8, 3)
         if identifier.cipher_hexa():
-            hexbase(args_given)
+            hexbase(args_given, 16, 2)
+        if identifier.cipher_decimal():
+            hexbase(add_zeros(args_given, 3), 10, 3)
 else:
     if len(key) > 0:
         from ciphers.Vigenere import Vigenere
@@ -88,7 +96,7 @@ else:
         pure_text_total.append(Vigenere.decipher(text))
     else:
         if identifier.cipher_hexa():
-            hexbase(args_given)
+            hexbase(args_given.replace(' ',''), 16, 2)
         if identifier.cipher_baconian():
             from ciphers.Baconian import Baconian
             text = Baconian(args_given.upper())

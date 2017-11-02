@@ -47,6 +47,14 @@ class Identifier:
                 return False
         return True
 
+    def cipher_decimal(self):
+        decimal = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        cifra = list(self.cipher.replace(' ', ''))
+        for correct in cifra:
+            if correct not in decimal:
+                return False
+        return True
+
     def cipher_morse(self):
         if '.' in self.cipher and '-' in self.cipher:
             return True
