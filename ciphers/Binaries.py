@@ -6,5 +6,5 @@ class Binaries:
         self.cipher = cipher
 
     def decipher(self):
-        binary = int(str(self.cipher.replace(' ','')),2)
+        binary = int(str(self.cipher.replace(' ', '')), 2)
         return str(binascii.unhexlify('%x' % binary))[2:-1]

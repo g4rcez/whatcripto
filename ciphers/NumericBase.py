@@ -14,7 +14,7 @@ class NumericBase:
 
     def make_split(self, string, cut):
         for start in range(0, len(string), cut):
-            yield string[start:start+cut]
+            yield string[start:start + cut]
 
     def split_str(self, string, cut):
         striped = []

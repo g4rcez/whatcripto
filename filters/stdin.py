@@ -4,15 +4,15 @@ class stdin:
         try:
             for flag in stdin:
                 if flag in parametros:
-                    return stdin[stdin.index(flag) + 1];
+                    return stdin[stdin.index(flag) + 1]
         except:
-            return None;
+            return None
 
     # Classe com o retorno caso exista o argumento passado [vetor é aconselhavel]
     def get_opt(stdin, parametros):
         try:
             for flag in stdin:
                 if flag in parametros:
-                    return True;
+                    return True
         except:
-            return False;
+            return False

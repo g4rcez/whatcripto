@@ -5,13 +5,13 @@ class sanitize:
             for character in string:
                 chars.append(character)
                 if (cont % length) == 0:
-                    chars.append(" ");
-                cont+=1;
-            string = ''.join(chars).strip();
+                    chars.append(" ")
+                cont += 1
+            string = ''.join(chars).strip()
         return string
 
     def no_blank(text):
-        return text.replace(" ","").replace("\t","");
+        return text.replace(" ", "").replace("\t", "")
 
     def print_nonone(text):
         try:
@@ -28,4 +28,4 @@ class sanitize:
         return string
 
     def charespecial():
-        return ["{","}","-","=",'ç',"[","]","_"]
+        return ["{", "}", "-", "=", 'ç', "[", "]", "_"]

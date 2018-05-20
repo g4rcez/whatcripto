@@ -128,8 +128,8 @@ fabric.properties
 # modules.xml
 # .idea/misc.xml
 # *.ipr
+**/__pycache__
 
 # Sonarlint plugin
 
 # End of https://www.gitignore.io/api/linux,pycharm,jetbrains,archlinuxpackages
-

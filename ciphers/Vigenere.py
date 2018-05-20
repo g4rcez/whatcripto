@@ -1,6 +1,7 @@
 from itertools import starmap, cycle
 from filters.sanitize import sanitize
 
+
 class Vigenere:
     def __init__(self, cipher, key):
         self.original = cipher.upper()

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3.5
 # coding: utf-8
 
 import sys
@@ -11,7 +11,8 @@ from filters.text_identifier import text_identifier
 
 def banner():
     print()
-    print("""██╗    ██╗██╗  ██╗ █████╗ ████████╗ ██████╗██████╗ ██╗██████╗ ████████╗ ██████╗
+    print(
+        """██╗    ██╗██╗  ██╗ █████╗ ████████╗ ██████╗██████╗ ██╗██████╗ ████████╗ ██████╗
 ██║    ██║██║  ██║██╔══██╗╚══██╔══╝██╔════╝██╔══██╗██║██╔══██╗╚══██╔══╝██╔═══██╗
 ██║ █╗ ██║███████║███████║   ██║   ██║     ██████╔╝██║██████╔╝   ██║   ██║   ██║
 ██║███╗██║██╔══██║██╔══██║   ██║   ██║     ██╔══██╗██║██╔═══╝    ██║   ██║   ██║
@@ -32,22 +33,25 @@ def help_user(script):
     \r\t[12]-> Hello Hacker
     """)
 
+
 def hexbase(cipher, base, spaces):
     from ciphers.NumericBase import NumericBase
     text = NumericBase(cipher, base, spaces)
     pure_text_total.append(NumericBase.decipher(text))
+
 
 def add_zeros(string, limit):
     string = string.split(' ')
     new = []
     for group in string:
         if len(group) < limit:
-           new.append(group.zfill(limit))
+            new.append(group.zfill(limit))
         else:
             new.append(group)
     return ''.join(new)
 
-banner()
+
+# banner()
 script = sys.argv[0].replace("./", "")
 args_given = sys.argv[1:]
 
@@ -72,7 +76,9 @@ if stdin.get_opt(args_given, ['-k', '--key']):
 pure_text_total = []
 args_given = ' '.join(args_given).strip()
 identifier = Identifier(args_given)
+print()
 print("Análise da Cifra: " + sanitize.print_nonone(args_given))
+print()
 if len(key) > 0:
     print("Foi informada uma chave: " + sanitize.print_nonone(key) + '\n')
 
@@ -96,7 +102,7 @@ else:
         pure_text_total.append(Vigenere.decipher(text))
     else:
         if identifier.cipher_hexa():
-            hexbase(args_given.replace(' ',''), 16, 2)
+            hexbase(args_given.replace(' ', ''), 16, 2)
         if identifier.cipher_baconian():
             from ciphers.Baconian import Baconian
             text = Baconian(args_given.upper())

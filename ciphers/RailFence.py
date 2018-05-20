@@ -6,7 +6,7 @@ class RailFence:
     def decipher(self):
         length = 1
         n = len(self.cipher)
-        for maximo in range(1,24):
+        for maximo in range(1, 24):
             length += 1
             Mat = [[] for i in range(length)]
             Msg = [''] * n

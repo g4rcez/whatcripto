@@ -20,15 +20,16 @@ class Identifier:
     def cipher_baconian(self):
         self.cipher = self.cipher.replace("a", "A").replace("b", "B")
         self.cipher = sanitize.no_blank(self.cipher)
-        return filters.text_identifier.text_identifier.is_only_args(self.cipher, ["A", "B"])
+        return filters.text_identifier.text_identifier.is_only_args(
+            self.cipher, ["A", "B"])
 
     def cipher_base64(self):
         dict_accepted = [
-            'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f',
-            'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'Q', 'W',
-            'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H',
-            'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '1', '2', '3', '4',
-            '5', '6', '7', '8', '9', '0', '/', '+', '='
+            'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd',
+            'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm',
+            'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D',
+            'F', 'G', 'H', 'J', 'K', 'L', 'Z', 'X', 'C', 'V', 'B', 'N', 'M',
+            '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '/', '+', '='
         ]
         if ' ' in self.cipher:
             return False
@@ -41,7 +42,7 @@ class Identifier:
 
     def cipher_octal(self):
         octal = ['0', '1', '2', '3', '4', '5', '6', '7']
-        cifra = list(self.cipher.replace(' ',''))
+        cifra = list(self.cipher.replace(' ', ''))
         for correct in cifra:
             if correct not in octal:
                 return False
@@ -61,9 +62,9 @@ class Identifier:
         return False
 
     def cipher_hackerize(self):
-        simbols = [ "₪", "¶", "☰", "┏", "⊥", "¥", "ü",
-            "¡", "☐", "þ", "Λ", "§", "Ð", "∲", "ç", "ƴ", "ß",
-            "∏", "ღ", "╫", "¿", "├", "↑", "ᶾ", "✕", "↻"
+        simbols = [
+            "₪", "¶", "☰", "┏", "⊥", "¥", "ü", "¡", "☐", "þ", "Λ", "§", "Ð",
+            "∲", "ç", "ƴ", "ß", "∏", "ღ", "╫", "¿", "├", "↑", "ᶾ", "✕", "↻"
         ]
         for char in simbols:
             if char in self.cipher:
