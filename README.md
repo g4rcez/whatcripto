@@ -16,3 +16,5 @@ dotnet run <ARGUMENTS>
 - Generate all bins for Windows, Linux, MacOS
 - Help menu
 - Document for classes and functions
+- Fix bug of especial chars in some conversions
+- Add more deciphers

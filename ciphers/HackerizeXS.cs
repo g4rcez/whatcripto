@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using System.Text;
 
-namespace Whatcripto.ciphers {
+namespace whatcripto.ciphers {
     public class HackerizeXS : CipherDetect {
         Dictionary<char, string> Dictionary = new Dictionary<char, string>();
 
@@ -34,15 +35,15 @@ namespace Whatcripto.ciphers {
             Dictionary.Add('▪', ".");
         }
         public string cleanText(string encripted) {
-            string decode = string.Empty;
+            StringBuilder decode = new StringBuilder();
             foreach (char @char in encripted) {
                 try {
-                    decode += Dictionary[@char];
+                    decode.Append(Dictionary[@char]);
                 } catch (System.Collections.Generic.KeyNotFoundException) {
-                    decode += @char;
+                    decode.Append(@char);
                 }
             }
-            return decode;
+            return decode.ToString();
         }
         public string name() => "HackerizeXS";
         public bool identify(string encripted) {

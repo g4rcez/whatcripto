@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Whatcripto.ciphers {
+namespace whatcripto.ciphers {
     public class BaconianCipher : CipherDetect {
 
         private Dictionary<string, string> Dictionary = new Dictionary<string, string>();
@@ -37,13 +38,16 @@ namespace Whatcripto.ciphers {
         }
 
         public string cleanText(string encripted) {
-            encripted = encripted.ToUpper();
-            List<string> groups = (from Match m in Regex.Matches(encripted, @"[ABab]{5}")select m.Value).ToList();
-            string decipher = string.Empty;
+            List<string> groups = (from Match m in Regex.Matches(encripted.ToUpper(), @"[ABab]{5}")select m.Value).ToList();
+            StringBuilder decipher = new StringBuilder();
             foreach (string group in groups) {
-                decipher += Dictionary[group];
+                try {
+                    decipher.Append(Dictionary[group]);
+                } catch (System.Exception) {
+                    decipher.Append(group);
+                }
             }
-            return decipher;
+            return decipher.ToString();
         }
 
         public bool identify(string encripted) => Regex.Match(encripted, "^[AB ab]+$").Success;

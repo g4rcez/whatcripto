@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Whatcripto.ciphers {
+namespace whatcripto.ciphers {
     public class MorseCode : CipherDetect {
         private Dictionary<string, string> Dictionary = new Dictionary<string, string>();
         public MorseCode() {
@@ -54,11 +54,11 @@ namespace Whatcripto.ciphers {
             Dictionary.Add("-...-", "=");
         }
         public string cleanText(string encripted) {
-            string decode = string.Empty;
+            StringBuilder decode = new StringBuilder();
             foreach (string code in encripted.Split(" ")) {
-                decode += Dictionary[code.Trim()];
+                decode.Append(Dictionary[code.Trim()]);
             }
-            return decode;
+            return decode.ToString();
         }
         public string name() => "MorseCode";
         public bool identify(string encripted) {

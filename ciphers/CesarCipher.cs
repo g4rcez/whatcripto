@@ -1,25 +1,26 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Whatcripto.utils;
+using System.Text;
+using whatcripto.utils;
 
-namespace Whatcripto.ciphers {
+namespace whatcripto.ciphers {
     public class CesarCipher : CipherDetect {
-        public CesarCipher () { }
-        public string cleanText (string encripted) {
-            List<string> bruteFroce = new List<string> ();
+        public CesarCipher() { }
+        public string cleanText(string encripted) {
+            List<string> bruteFroce = new List<string>();
             for (int i = 0; i <= 26; i++) {
-                string output = string.Empty;
+                StringBuilder output = new StringBuilder();
                 foreach (char @char in encripted) {
-                    output += Strings.getCase (@char, 26 - i);
+                    output.Append(Strings.getCase(@char, 26 - i));
                 }
-                bruteFroce.Add (output);
+                bruteFroce.Add(output.ToString());
             }
-            return String.Join ("\t", bruteFroce);
+            return String.Join("\t|=> ", bruteFroce);
         }
 
-        public bool identify (string encripted) => false;
+        public bool identify(string encripted) => false;
 
-        public string name () => "Cesar Cipher";
+        public string name() => "Cesar Cipher";
     }
 }

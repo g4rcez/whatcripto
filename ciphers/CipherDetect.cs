@@ -1,8 +1,8 @@
-namespace Whatcripto.ciphers {
+namespace whatcripto.ciphers {
     public interface CipherDetect {
-        bool identify (string encripted);
-        string cleanText (string encripted);
+        bool identify(string encripted);
+        string cleanText(string encripted);
 
-        string name ();
+        string name();
     }
 }

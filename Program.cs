@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Whatcripto.ciphers;
+using whatcripto.ciphers;
+using whatcripto.utils;
 
 namespace Whatcripto {
     class Program {
@@ -14,13 +15,36 @@ namespace Whatcripto {
             ciphers.Add(new BinaryCode());
             ciphers.Add(new HackerizeXS());
             ciphers.Add(new MorseCode());
+            ciphers.Add(new RailFenceCipher());
             ciphers.Add(new CesarCipher());
         }
 
-        static void Main(params string[] args) {
+        private static void loadWithKey(string key) {
+            ciphers.Add(new VigenereCipher(key));
+        }
+
+        private static void help(string @string) {
+            if (@string.Contains("-h") || @string.Contains("--help")) {
+                Console.WriteLine(HelpMe.maintainer());
+                System.Environment.Exit(1);
+            }
+        }
+
+        static void Main(string[] args) {
             string @string = String.Join(" ", args);
+            help(@string);
             if (ciphersWithoutKey(@string)) {
-                // Load list with key for decipher
+                string[] values = @string.Split(" ");
+                for (int i = 0; i < values.Length - 1; i++) {
+                    if (values[i].Equals("-k") || values[i].Equals("--key")) {
+                        loadWithKey(values[i + 1]);
+                        List<string> list = new List<string>(values);
+                        list.Remove(values[i]);
+                        list.Remove(values[i + 1]);
+                        @string = String.Join(" ", list.ToArray());
+                        break;
+                    }
+                }
             } else {
                 load();
             }
