@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using whatcripto.utils;
 
 namespace whatcripto.ciphers {
     public class RailFenceCipher : CipherDetect {
@@ -8,12 +9,12 @@ namespace whatcripto.ciphers {
             for (int i = 0; i <= 26; i++) {
                 try {
                     bruteFroce.Add(oneRail(encripted, i));
-                } catch (System.Exception) { }
+                } catch (System.Exception) {}
             }
             return String.Join("\t|=> ", bruteFroce);
         }
 
-        public bool identify(string encripted) => true;
+        public bool identify(string encripted) => Strings.plusThen4(encripted);
 
         public string name() => "RailFence";
 

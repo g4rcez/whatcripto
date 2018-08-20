@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+
 namespace whatcripto.utils {
     public abstract class Strings {
         public static char getCase(char @char, int key) {
@@ -11,6 +13,19 @@ namespace whatcripto.utils {
 
         public static char charOffset(char @char) {
             return char.IsUpper(@char) ? 'A' : 'a';
+        }
+
+        public static bool plusThen4(string @string) {
+            List<char> list = new List<char>();
+            foreach (char @char in @string) {
+                if (!list.Contains(@char)) {
+                    list.Add(@char);
+                }
+                if (list.Count >= 3) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -6,7 +6,7 @@ using whatcripto.utils;
 
 namespace whatcripto.ciphers {
     public class CesarCipher : CipherDetect {
-        public CesarCipher() { }
+        public CesarCipher() {}
         public string cleanText(string encripted) {
             List<string> bruteFroce = new List<string>();
             for (int i = 0; i <= 26; i++) {
@@ -19,7 +19,7 @@ namespace whatcripto.ciphers {
             return String.Join("\t|=> ", bruteFroce);
         }
 
-        public bool identify(string encripted) => false;
+        public bool identify(string encripted) => Strings.plusThen4(encripted);
 
         public string name() => "Cesar Cipher";
     }
