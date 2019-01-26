@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace whatcripto.ciphers {
-    public class HackerizeXS : CipherDetect {
+namespace whatcripto.ciphers
+{
+    public class HackerizeXS : CipherDetect
+    {
         Dictionary<char, string> Dictionary = new Dictionary<char, string>();
 
-        public HackerizeXS() {
+        public HackerizeXS()
+        {
             Dictionary.Add('Λ', "a");
             Dictionary.Add('₪', "w");
             Dictionary.Add('¶', "q");
@@ -34,25 +37,36 @@ namespace whatcripto.ciphers {
             Dictionary.Add('↻', "c");
             Dictionary.Add('▪', ".");
         }
-        public string cleanText(string encripted) {
+        public string cleanText(string encripted)
+        {
             StringBuilder decode = new StringBuilder();
-            foreach (char @char in encripted) {
-                try {
+            foreach (char @char in encripted)
+            {
+                try
+                {
                     decode.Append(Dictionary[@char]);
-                } catch (System.Collections.Generic.KeyNotFoundException) {
+                }
+                catch (System.Collections.Generic.KeyNotFoundException)
+                {
                     decode.Append(@char);
                 }
             }
             return decode.ToString();
         }
         public string name() => "HackerizeXS";
-        public bool identify(string encripted) {
-            foreach (char @char in encripted) {
-                try {
-                    if (Dictionary.ContainsKey(@char)) {
+        public bool identify(string encripted)
+        {
+            foreach (char @char in encripted)
+            {
+                try
+                {
+                    if (Dictionary.ContainsKey(@char))
+                    {
                         return true;
                     }
-                } catch (System.Collections.Generic.KeyNotFoundException) {
+                }
+                catch (System.Collections.Generic.KeyNotFoundException)
+                {
                     return false;
                 }
             }

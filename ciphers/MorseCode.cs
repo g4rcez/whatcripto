@@ -2,10 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace whatcripto.ciphers {
-    public class MorseCode : CipherDetect {
+namespace whatcripto.ciphers
+{
+    public class MorseCode : CipherDetect
+    {
         private Dictionary<string, string> Dictionary = new Dictionary<string, string>();
-        public MorseCode() {
+        public MorseCode()
+        {
             Dictionary.Add(".-", "A");
             Dictionary.Add("-...", "B");
             Dictionary.Add("-.-.", "C");
@@ -53,21 +56,29 @@ namespace whatcripto.ciphers {
             Dictionary.Add(".--.-.", "@");
             Dictionary.Add("-...-", "=");
         }
-        public string cleanText(string encripted) {
+        public string cleanText(string encripted)
+        {
             StringBuilder decode = new StringBuilder();
-            foreach (string code in encripted.Split(" ")) {
+            foreach (string code in encripted.Split(" "))
+            {
                 decode.Append(Dictionary[code.Trim()]);
             }
             return decode.ToString();
         }
         public string name() => "MorseCode";
-        public bool identify(string encripted) {
-            foreach (string code in encripted.Split(" ")) {
-                try {
-                    if (Dictionary.ContainsKey(code)) {
+        public bool identify(string encripted)
+        {
+            foreach (string code in encripted.Split(" "))
+            {
+                try
+                {
+                    if (Dictionary.ContainsKey(code))
+                    {
                         return true;
                     }
-                } catch (System.Collections.Generic.KeyNotFoundException) {
+                }
+                catch (System.Collections.Generic.KeyNotFoundException)
+                {
                     return false;
                 }
             }

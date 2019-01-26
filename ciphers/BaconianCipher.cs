@@ -3,12 +3,15 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace whatcripto.ciphers {
-    public class BaconianCipher : CipherDetect {
+namespace whatcripto.ciphers
+{
+    public class BaconianCipher : CipherDetect
+    {
 
         private Dictionary<string, string> Dictionary = new Dictionary<string, string>();
 
-        public BaconianCipher() {
+        public BaconianCipher()
+        {
             Dictionary.Add("AAAAA", "A");
             Dictionary.Add("AAAAB", "B");
             Dictionary.Add("AAABA", "C");
@@ -37,13 +40,18 @@ namespace whatcripto.ciphers {
             Dictionary.Add("BBAAB", "Z");
         }
 
-        public string cleanText(string encripted) {
-            List<string> groups = (from Match m in Regex.Matches(encripted.ToUpper(), @"[ABab]{5}")select m.Value).ToList();
+        public string cleanText(string encripted)
+        {
+            List<string> groups = (from Match m in Regex.Matches(encripted.ToUpper(), @"[ABab]{5}") select m.Value).ToList();
             StringBuilder decipher = new StringBuilder();
-            foreach (string group in groups) {
-                try {
+            foreach (string group in groups)
+            {
+                try
+                {
                     decipher.Append(Dictionary[group]);
-                } catch (System.Exception) {
+                }
+                catch (System.Exception)
+                {
                     decipher.Append(group);
                 }
             }
